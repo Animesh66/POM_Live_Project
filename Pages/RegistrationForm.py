@@ -1,12 +1,13 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from Pages.BasePage import BasePage
 from Utilities import configReader
 
 
-class RegistrationPage:
+class RegistrationPage(BasePage):
 
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
 
     def fill_form(self, name, ph_no, email, country, city, username, password):
         self.driver.find_element(By.XPATH, configReader.readConfig("", "")).send_keys(name)
