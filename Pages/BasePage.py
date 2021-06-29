@@ -8,7 +8,7 @@ class BasePage:
         self.driver = driver
 
     def click(self, locator):  # this function will click on the locator
-        if str(locator).endswith("_xpath"):
+        if str(locator).endswith("_xpath"):  # if the locator variable name is ends with _xpath it will click on the xpath
             self.driver.find_element(By.XPATH(configReader.readConfig("locator", locator)).click())
         elif str(locator).endswith("_css"):
             self.driver.find_element(By.CSS_SELECTOR(configReader.readConfig(("locator", locator)).click()))
