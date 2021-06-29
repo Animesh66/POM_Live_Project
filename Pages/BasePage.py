@@ -16,6 +16,11 @@ class BasePage:
             self.driver.find_element(By.ID(configReader.readConfig(("locator", locator)).click()))
 
     def type(self, locator, value):
-        self.driver.find_element(By.XPATh(configReader.readConfig("locator", locator)).send_keys(value))
+        if str(locator).endswith("_xpath"):
+            self.driver.find_element(By.XPATH(configReader.readConfig("locator", locator)).send_keys(value))
+        elif str(locator).endswith("_css"):
+            self.driver.find_element(By.CSS_SELECTOR(configReader.readConfig(("locator", locator)).send_keys(value)))
+        elif str(locator).endswith("_id"):
+            self.driver.find_element(By.ID(configReader.readConfig(("locator", locator)).send_keys(value)))
 
 
